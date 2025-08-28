@@ -16,3 +16,14 @@
 ## Controllers
 
   nest g controller users
+
+---
+
+# -- NOTES --
+
+[GET] https://localhost:3001/users          --> Retorna todos los usuarios (200)
+[GET] https://localhost:3001/users/:id      --> Retorna el usuario por ID (200)
+
+[POST] https://localhost:3001/users         --> Retorna el usuario creado (201)
+
+[DELETE] https://localhost:3001/users/:id   --> Retorna status de usuario borrado (200)
