@@ -1,6 +1,7 @@
 ## NestJS
 - [NestJS Docs - First Steps](https://docs.nestjs.com/first-steps)
-- [NestJS Exception Filters](https://docs.nestjs.com/exception-filters)
+- [NestJS Docs - Exception Filters](https://docs.nestjs.com/exception-filters)
+- [NestJS Docs - Validation](https://docs.nestjs.com/techniques/validation)
 
 ## Comandos de inicio
 
@@ -14,9 +15,10 @@
     export PORT=4001
     npm run start:dev --port 4001   // Inicia app en dev en port 4001
 
-## Controllers
+## Generator
 
-  nest g controller users
+    nest g controller users
+    nest g service users
 
 ---
 
