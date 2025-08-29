@@ -19,6 +19,7 @@
 
     nest g controller users
     nest g service users
+    nest g mo users
 
 ---
 
