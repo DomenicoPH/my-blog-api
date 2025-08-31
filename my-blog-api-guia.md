@@ -21,6 +21,11 @@
     nest g service users
     nest g mo users
 
+## Docker
+* Password PgAdmin - localhost:5050: 12345
+
+    docker compose up -d
+
 ---
 
 # -- NOTES --
