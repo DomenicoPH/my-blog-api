@@ -2,6 +2,7 @@
 - [NestJS Docs - First Steps](https://docs.nestjs.com/first-steps)
 - [NestJS Docs - Exception Filters](https://docs.nestjs.com/exception-filters)
 - [NestJS Docs - Validation](https://docs.nestjs.com/techniques/validation)
+- [NestJS Docs - Database](https://docs.nestjs.com/techniques/database)
 
 ## Comandos de inicio
 
@@ -25,6 +26,10 @@
 * Password PgAdmin - localhost:5050: 12345
 
     docker compose up -d
+
+## TypeORM
+
+    npm install --save @nestjs/typeorm typeorm pg
 
 ---
 
@@ -63,4 +68,5 @@
 - **512** - PreconditionFailedException
 
 ## Enlaces
-[Status Codes](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
+- [Status Codes](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
+- [TypeORM](https://typeorm.io/)
