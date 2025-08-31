@@ -1,58 +1,54 @@
 import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
-import { User } from './user.model';
+import { User } from './entities/user.entity';
 import { CreateUserDto, UpdateUserDto } from './user.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class UsersService {
+  constructor(
+    @InjectRepository(User)
+    private usersRepository: Repository<User>,
+  ){}
 
-  private users: User[] = [
-    { id: '1',
-      name: 'Master User',
-      email: 'master_user@example.com'
-    },
-  ];
-
-  findAll() {
-    return this.users;
+  async findAll() {
+     const users = await this.usersRepository.find();
+     return users;
   }
 
-  getUserById(id: string) {
-    const position = this.findOne(id);
-    const user = this.users[position];
-    if(user.id === '1'){
+  async getUserById(id: number) {
+    const user = await this.findOne(id);
+    if(user.id === 1){
       throw new ForbiddenException(`User with id ${id} is not allowed to access this resource`);
     }
     return user;
   }
 
-  create(body: CreateUserDto) {
-    const newUser = { ...body, id: new Date().getTime().toString() };
-    this.users.push(newUser);
+  async create(body: CreateUserDto) {
+    const newUser = await this.usersRepository.save(body);
     return newUser;
   }
 
-  update(id: string, changes: UpdateUserDto) {
-    const position = this.findOne(id);
-    const currentData = this.users[position];
-    const updatedUser = { ...currentData, ...changes };
-    this.users[position] = updatedUser;
+  async update(id: number, changes: UpdateUserDto) {
+    const user = await this.findOne(id);
+    const updatedUser = this.usersRepository.merge( user, changes );
     return updatedUser;
   }
 
-  delete(id: string) {
-    const position = this.findOne(id);
-    this.users.splice(position, 1);
+  async delete(id: number) {
+    const user = await this.findOne(id);
+    await this.usersRepository.delete(user.id);
     return { message: 'User deleted' };
   }
 
   // privados:
 
-  private findOne(id: string) {
-    const position = this.users.findIndex( user => user.id === id);
-    if(position === -1){
+  private async findOne(id: number) {
+    const user = await this.usersRepository.findOneBy({ id });
+    if(!user){
       throw new NotFoundException(`User with id ${id} not found`);
     }
-    return position;
+    return user;
   }
 
 }

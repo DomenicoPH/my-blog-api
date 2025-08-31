@@ -10,13 +10,13 @@ import { Env } from './env.model';
       isGlobal: true,
     }),
     TypeOrmModule.forRootAsync({
-      useFactory: (config: ConfigService<Env>) => ({
+      useFactory: (configService: ConfigService<Env>) => ({
         type: 'postgres',
-        host: config.get('POSTGRES_HOST', { infer: true }),
-        port: config.get('POSTGRES_PORT', { infer: true }),
-        username: config.get('POSTGRES_USER', { infer: true }),
-        password: config.get('POSTGRES_PASSWORD', { infer: true }),
-        database: config.get('POSTGRES_DB', { infer: true }),
+        host: configService.get('POSTGRES_HOST', { infer: true }),
+        port: configService.get('POSTGRES_PORT', { infer: true }),
+        username: configService.get('POSTGRES_USER', { infer: true }),
+        password: configService.get('POSTGRES_PASSWORD', { infer: true }),
+        database: configService.get('POSTGRES_DB', { infer: true }),
         autoLoadEntities: true,
         synchronize: true,
       }),
